@@ -12,11 +12,13 @@ const App = () => {
 
   const [clickState, setClickState] = useState(false);
 
+  // const [subreddit, setSubreddit] = useState('/r/upliftingnews')
+
 
   // gets top level posts from subreddit endpoint, filters out any stickied posts and returns a certain amount
   //askscience/top/.json?sort=top
   const fetchPosts = async () => {
-    const res = await fetchReddit.get('/r/unitedkingdom.json');
+    const res = await fetchReddit.get('/r/ukpolitics.json');
     const postsArray = res.data.data.children;
     const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
     setPosts(postsWithstickiedRemoved.slice(0, 21));
@@ -51,8 +53,8 @@ const App = () => {
 
 
 
+  //helper function that shortens long comments, and prompts user to read the rest on reddit
   const alterLongComment = (commentText, index) => {
-    console.log(commentText)
     if (commentText.body.length < 200) return commentText.body;
     if (commentText.body.length > 200) {
       return (
@@ -68,18 +70,20 @@ const App = () => {
 
 
 
+  //helper function that renders posts and comments fetched 
   const renderArticles = () => {
     if (articles.length > 0) {
       return articles.map((article, index) => {
         return (
           <div
+            //long-header class will slighly decrease font size
             className={`grid-item
              ${(article.articleTitle.length > 80 && index > 1) ? 'long-header' : ''} `}
             key={article.articleMeta.data.id}
           >
             <h2 className="grid-item-header">{article.articleTitle}</h2>
             <div>
-              {/* Need to check if comments exists */}
+              {/*  Need to check if comments exists  */}
               <ul>
                 {article['articleComments'][0][0] ?
                   <li>
@@ -104,6 +108,24 @@ const App = () => {
     }
   }
 
+  const dateFormatter = () => {
+    const today = new Date();
+    const dd = String(today.getDay());
+    const dofm = String(today.getDate());
+    const mm = String(today.getMonth());
+    const yyyy = today.getFullYear();
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+    const daysOfMonth = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+
+    const date = `${days[dd]} ${months[mm]} ${daysOfMonth[dofm]} ${yyyy}`
+
+    return date;
+  }
+
 
 
   return (
@@ -125,7 +147,7 @@ const App = () => {
           <p>WEATHER - Scattered clouds with a chance of rain</p>
         </div> */}
         <div className="date">
-          <p>March 08 2020</p>
+          <p>{dateFormatter()}</p>
         </div>
         {/* <div className="price">
           <p>Price: 3 Shrootbucks</p>
@@ -135,7 +157,7 @@ const App = () => {
       <div className='main-grid'>
 
         {renderArticles()}
-
+        {dateFormatter()}
 
 
       </div>
