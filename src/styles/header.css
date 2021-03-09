@@ -7,10 +7,9 @@
   margin-bottom: 1rem;
   border-top: 1px solid;
   border-bottom: 1px solid;
-  /* font-family: 'Exo', sans-serif;  */
- font-family: 'Archivo Black', sans-serif;
- height: 7rem;
- position: relative;
+  font-family: 'Archivo Black', sans-serif;
+  height: 7rem;
+  position: relative;
 }
 
 .header-container::before{
@@ -37,6 +36,7 @@
   font-family: inherit;
   height: inherit;
   display: grid;
+  margin-left: 2rem;
 }
 
 .header-left button{
@@ -73,6 +73,7 @@
   display: grid;
   border: none;
   margin: 0;
+  margin-right: 2rem;
   padding: 0;
   background-color: var(--main-line-color);
 }
@@ -83,6 +84,7 @@
   padding: 0;
   margin: auto;
   text-align: center;
+  font-style: italic;
 }
 
 .sub-header{
