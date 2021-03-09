@@ -14,8 +14,9 @@ const App = () => {
 
 
   // gets top level posts from subreddit endpoint, filters out any stickied posts and returns a certain amount
+  //askscience/top/.json?sort=top
   const fetchPosts = async () => {
-    const res = await fetchReddit.get('/r/news.json');
+    const res = await fetchReddit.get('/r/unitedkingdom.json');
     const postsArray = res.data.data.children;
     const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
     setPosts(postsWithstickiedRemoved.slice(0, 21));
