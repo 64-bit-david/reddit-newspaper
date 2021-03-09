@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.1",
     "axios": "^0.21.1",
     "guardian-js": "^3.0.0",
+    "openweather-apis": "^4.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
