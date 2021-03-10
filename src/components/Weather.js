@@ -3,13 +3,8 @@ import weather from 'openweather-apis';
 
 const Weather = () => {
 
-
-
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-
-  const [currentTemp, setCurrentTemp] = useState('');
-  const [currentForecast, setCurrentForecast] = useState('');
+  const [currentTemp, setCurrentTemp] = useState(null);
+  const [currentForecast, setCurrentForecast] = useState(null);
 
   const [currentWeather, setCurrentWeather] = useState('');
 
@@ -17,30 +12,20 @@ const Weather = () => {
 
 
   useEffect(() => {
-    const getLocation = async () => {
-      await window.navigator.geolocation.getCurrentPosition(pos => {
-        setLatitude(pos.coords.latitude);
-        setLongitude(pos.coords.longitude);
-      })
-    }
-    getLocation();
+
 
     const setWeather = async () => {
       try {
         await weather.setAPPID(process.env.REACT_APP_WEATHER_API_KEY);
-        await weather.setCoordinate(latitude, longitude);
+        await weather.setCityId(2643743);
         await weather.setUnits('metric');
         await weather.setLang('en');
-
-        await weather.getTemperature((err, temp) => {
-          setCurrentTemp(Math.round(temp));
+        weather.getTemperature(async (err, temp) => {
+          await setCurrentTemp(Math.round(temp));
         })
-
-        await weather.getDescription((err, desc) => {
-          setCurrentForecast(desc);
+        weather.getDescription(async (err, desc) => {
+          await setCurrentForecast(desc);
         })
-
-        setCurrentWeather(`${currentTemp} degrees, ${currentForecast}`)
       } catch (err) {
         if (err) console.log(err);
       }
@@ -48,7 +33,7 @@ const Weather = () => {
 
     setWeather();
 
-  }, [currentForecast])
+  }, [])
 
 
 
@@ -56,7 +41,8 @@ const Weather = () => {
 
 
 
-  return <p>{currentForecast ? currentWeather : ''}</p>;
+
+  return <p>{currentForecast ? `London UK ${currentTemp}°C ${currentForecast}` : `London UK`}</p>;
 }
 
 export default Weather;

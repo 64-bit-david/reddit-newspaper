@@ -3,7 +3,7 @@
   top: 7rem;
   z-index: 2;
   border: 2px solid var(--main-line-color);
-  background-color: rgb(175, 196, 196);
+  background-color: var(--background-color);
   transform: translateX(-125%);
   transition: all .1s ease-in;
 }
@@ -38,15 +38,13 @@
   width: inherit;
   padding: 1rem 0;
   padding-left: 2rem;
-  background-color: rgb(175, 196, 196);
+  background-color: var(--background-color);
   border: none;
   border-top: 1px solid var(--main-line-color);
   text-align: left;
+  outline: transparent;
 }
 
-.header-left .subreddit-list button:focus{
-  border-radius: 0;
-}
 
 
 .header-left .subreddit-list button:hover{

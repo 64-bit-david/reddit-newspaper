@@ -4,7 +4,7 @@ import Weather from './Weather';
 import CurrentDate from './Date';
 import SubredditSelector from './SubredditSelector';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -132,6 +132,9 @@ const App = () => {
           <button
             onClick={() => setClickState(!clickState)}
           >/r/{subreddit}
+            <span className="btn-symbol">
+              <FontAwesomeIcon icon={faChevronDown} />
+            </span>
           </button>
           <SubredditSelector
             clickState={clickState}

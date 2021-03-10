@@ -42,10 +42,11 @@
 }
 
 .header-left button{
-  width: 12rem;
+  min-width: 12rem;
   height: 85%;
   margin: auto;
-  display: block;
+  display: flex;
+  align-items: center;
   background: var(--background-color);
   border-radius: 0;
   font-family: inherit;
@@ -58,6 +59,9 @@
   color: var(--background-color);
 }
 
+.header-left .btn-symbol{
+  margin-left: .5rem;
+}
 
 .header-center{
   font-family: 'chomsky', cursive;
