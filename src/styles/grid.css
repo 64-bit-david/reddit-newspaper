@@ -102,7 +102,11 @@
 }
 
 .grid-item:nth-child(16n + 2) h2{ 
-  font-size: 1.2em;
+  font-size: 1.3em;
+}
+
+.grid-item:nth-child(16n + 2) li{ 
+  font-size: .8em;
 }
 
 .grid-item:nth-child(16n + 10){
@@ -110,7 +114,11 @@
 }
 
 .grid-item:nth-child(16n + 10) h2{
-  font-size: 1.5em;
+  font-size: 1.7em;
+}
+
+.grid-item:nth-child(16n + 10) li{
+  font-size: .9em;
 }
 
 .author-line{

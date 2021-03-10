@@ -37,13 +37,16 @@
   height: inherit;
   display: grid;
   margin-left: 2rem;
+  position: relative;
+
 }
 
 .header-left button{
   width: 12rem;
   height: 85%;
   margin: auto;
-  background: none;
+  display: block;
+  background: var(--background-color);
   border-radius: 0;
   font-family: inherit;
   cursor: pointer;

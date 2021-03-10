@@ -26,20 +26,24 @@ const Weather = () => {
     getLocation();
 
     const setWeather = async () => {
-      await weather.setAPPID(process.env.REACT_APP_WEATHER_API_KEY);
-      await weather.setCoordinate(latitude, longitude);
-      await weather.setUnits('metric');
-      await weather.setLang('en');
+      try {
+        await weather.setAPPID(process.env.REACT_APP_WEATHER_API_KEY);
+        await weather.setCoordinate(latitude, longitude);
+        await weather.setUnits('metric');
+        await weather.setLang('en');
 
-      await weather.getTemperature((err, temp) => {
-        setCurrentTemp(Math.round(temp));
-      })
+        await weather.getTemperature((err, temp) => {
+          setCurrentTemp(Math.round(temp));
+        })
 
-      await weather.getDescription((err, desc) => {
-        setCurrentForecast(desc);
-      })
+        await weather.getDescription((err, desc) => {
+          setCurrentForecast(desc);
+        })
 
-      setCurrentWeather(`${currentTemp} degrees, ${currentForecast}`)
+        setCurrentWeather(`${currentTemp} degrees, ${currentForecast}`)
+      } catch (err) {
+        if (err) console.log(err);
+      }
     }
 
     setWeather();

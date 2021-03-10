@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import fetchReddit from '../apis/fetchReddit';
 import Weather from './Weather';
 import CurrentDate from './Date';
+import SubredditSelector from './SubredditSelector';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -14,7 +17,7 @@ const App = () => {
 
   const [clickState, setClickState] = useState(false);
 
-  const [subreddit, setSubreddit] = useState('/r/worldnews');
+  const [subreddit, setSubreddit] = useState('ukpolitics');
 
 
 
@@ -24,7 +27,7 @@ const App = () => {
   // gets top level posts from subreddit endpoint, filters out any stickied posts and returns a certain amount
   //askscience/top/.json?sort=top
   const fetchPosts = async () => {
-    const res = await fetchReddit.get(`${subreddit}.json`);
+    const res = await fetchReddit.get(`/r/${subreddit}.json`);
     const postsArray = res.data.data.children;
     const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
     setPosts(postsWithstickiedRemoved.slice(0, 21));
@@ -44,8 +47,9 @@ const App = () => {
 
 
   useEffect(() => {
+    setArticles([]);
     fetchPosts();
-  }, []);
+  }, [subreddit]);
 
   //once posts are fetched, using id to fetch each post's comments
   useEffect(() => {
@@ -59,14 +63,15 @@ const App = () => {
 
 
 
-  //helper function that shortens long comments, and prompts user to read the rest on reddit
-  const alterLongComment = (commentText, index) => {
-    if (commentText.body.length < 200) return commentText.body;
-    if (commentText.body.length > 200) {
+  //get comment meta data, returns comment text
+  //if comment exceeds 200chars, only return first 200 + option to read full text on reddit
+  const alterLongComment = (comment, index) => {
+    if (comment.body.length < 200) return comment.body;
+    if (comment.body.length > 200) {
       return (
         <div>
-          {commentText.body.slice(0, 200)}...<br />
-          <a href={`https://www.reddit.com${commentText.permalink}`} className="reddit-comment-link">
+          {comment.body.slice(0, 200)}...<br />
+          <a href={`https://www.reddit.com${comment.permalink}`} className="reddit-comment-link">
             Continue on reddit
           </a>
         </div>
@@ -76,7 +81,7 @@ const App = () => {
 
 
 
-  //helper function that renders posts and comments fetched 
+  // renders posts and comments held in articles' state
   const renderArticles = () => {
     if (articles.length > 0) {
       return articles.map((article, index) => {
@@ -94,7 +99,9 @@ const App = () => {
                 {article['articleComments'][0][0] ?
                   <li>
                     <span className="author-line">User:
-                    <span className="author-name"> {article['articleComments'][0][0].data.author}</span> says </span><br />
+                  {/* get comment username */}
+                      <span className="author-name"> {article['articleComments'][0][0].data.author}</span> says </span><br />
+                    {/* Get comment meta */}
                     {alterLongComment(article['articleComments'][0][0].data)}
                   </li> :
                   <li> No Comments Yet!</li>}
@@ -122,7 +129,16 @@ const App = () => {
     <div className="main-container">
       <div className="header-container">
         <div className="header-left">
-          <button onClick={() => setClickState(!clickState)}>/r/worldnews</button>
+          <button
+            onClick={() => setClickState(!clickState)}
+          >/r/{subreddit}
+          </button>
+          <SubredditSelector
+            clickState={clickState}
+            setClickState={setClickState}
+            subreddit={subreddit}
+            setSubreddit={setSubreddit}
+          />
         </div>
         <div className='header-center'>
           <h1>The Reddit Daily</h1>
