@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { selectSubreddit } from '../actions';
 
-const SubredditSelector = ({ clickState, setClickState, subreddit, setSubreddit }) => {
+const SubredditSelector = ({ clickState, setClickState, subreddit, selectSubreddit }) => {
 
   const subRedditList = ['worldnews', 'news', 'upliftingnews', 'askreddit', 'politics', 'nottheonion', 'ukpolitics', 'technology', 'science', 'futurology',];
 
@@ -8,11 +10,11 @@ const SubredditSelector = ({ clickState, setClickState, subreddit, setSubreddit 
     return (
       <div>
         <h4>Select a subreddit</h4>
-        <ul className="subreddit-list">{subRedditList.map(item => {
+        <ul className="subreddit-list">{subRedditList.map((item, index) => {
           return (
             <li key={item}>
               <button onClick={() => {
-                setSubreddit(item)
+                selectSubreddit(index)
                 setClickState(!clickState)
               }
               }>
@@ -34,4 +36,8 @@ const SubredditSelector = ({ clickState, setClickState, subreddit, setSubreddit 
   )
 }
 
-export default SubredditSelector
+const mapStateToProps = ({ subreddit }) => {
+  return ({ subreddit })
+}
+
+export default connect(mapStateToProps, { selectSubreddit })(SubredditSelector)

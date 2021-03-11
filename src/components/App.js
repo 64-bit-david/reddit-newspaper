@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts, fetchComments, removeArticles } from '../actions';
 import fetchReddit from '../apis/fetchReddit';
 import Weather from './Weather';
 import CurrentDate from './Date';
 import SubredditSelector from './SubredditSelector';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 
 
 
-const App = () => {
+const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArticles }) => {
 
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
-  const [articles, setArticles] = useState([]);
 
   const [clickState, setClickState] = useState(false);
 
-  const [subreddit, setSubreddit] = useState('ukpolitics');
+  // const [subreddit, setSubreddit] = useState('ukpolitics');
 
 
 
@@ -26,29 +27,29 @@ const App = () => {
 
   // gets top level posts from subreddit endpoint, filters out any stickied posts and returns a certain amount
   //askscience/top/.json?sort=top
-  const fetchPosts = async () => {
-    const res = await fetchReddit.get(`/r/${subreddit}.json`);
-    const postsArray = res.data.data.children;
-    const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
-    setPosts(postsWithstickiedRemoved.slice(0, 21));
-  }
+  // const fetchPosts = async () => {
+  //   const res = await fetchReddit.get(`/r/${subreddit}.json`);
+  //   const postsArray = res.data.data.children;
+  //   const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
+  //   setPosts(postsWithstickiedRemoved.slice(0, 21));
+  // }
 
   //fetches comments from post's fetched ids.
   // filters out stickied, removed and bot comments
-  const fetchComments = async (postId, post) => {
-    const res = await fetchReddit.get(postId);
-    const comments = res.data[1].data.children;
-    const commentsWithStickedRemoved = comments.filter(comment => {
-      return (!comment.data.stickied && comment.data.author_flair_text !== "BOT" && comment.data.body !== "[removed]");
-    })
-    const article = { articleTitle: post.data.title, articleComments: [commentsWithStickedRemoved.slice(0, 2)], articleMeta: post }
-    setArticles((prevState) => ([...prevState, article]))
-  }
+  // const fetchComments = async (postId, post) => {
+  //   const res = await fetchReddit.get(postId);
+  //   const comments = res.data[1].data.children;
+  //   const commentsWithStickedRemoved = comments.filter(comment => {
+  //     return (!comment.data.stickied && comment.data.author_flair_text !== "BOT" && comment.data.body !== "[removed]");
+  //   })
+  //   const article = { articleTitle: post.data.title, articleComments: [commentsWithStickedRemoved.slice(0, 2)], articleMeta: post }
+  //   setArticles((prevState) => ([...prevState, article]))
+  // }
 
 
   useEffect(() => {
-    setArticles([]);
-    fetchPosts();
+    removeArticles();
+    fetchPosts(subreddit);
   }, [subreddit]);
 
   //once posts are fetched, using id to fetch each post's comments
@@ -92,7 +93,11 @@ const App = () => {
              ${(article.articleTitle.length > 80 && index > 1) ? 'long-header' : ''} `}
             key={article.articleMeta.data.id}
           >
-            <h2 className="grid-item-header">{article.articleTitle}</h2>
+            <h2 className="grid-item-header">
+              <a className="header-link" href={`https://www.reddit.com${article.articleMeta.data.permalink}`}>
+                {article.articleTitle}
+              </a>
+            </h2>
             <div>
               {/*  Need to check if comments exists  */}
               <ul>
@@ -139,8 +144,8 @@ const App = () => {
           <SubredditSelector
             clickState={clickState}
             setClickState={setClickState}
-            subreddit={subreddit}
-            setSubreddit={setSubreddit}
+          // subreddit={subreddit}
+          // setSubreddit={setSubreddit}
           />
         </div>
         <div className='header-center'>
@@ -174,4 +179,8 @@ const App = () => {
   )
 }
 
-export default App
+const mapStateToProps = ({ subreddit, posts, articles }) => {
+  return { subreddit, posts, articles }
+}
+
+export default connect(mapStateToProps, { fetchPosts, fetchComments, removeArticles })(App)
