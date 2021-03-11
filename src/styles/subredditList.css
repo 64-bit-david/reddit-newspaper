@@ -1,5 +1,7 @@
 .header-left .subreddit-list-container{
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
   top: 7rem;
   z-index: 2;
   border: 2px solid var(--main-line-color);
@@ -9,7 +11,10 @@
 }
 
 .header-left .subreddit-list-container.active{
+  visibility: visible;
+  opacity: 1;
   transform: translateX(0);
+
 }
 
 

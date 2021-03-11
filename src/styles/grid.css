@@ -31,10 +31,33 @@
 .grid-item h2{
   font-size: 1em;
   font-family: 'Exo', sans-serif;
+  text-align: center;
   margin: 1rem;
   padding: 0;
   margin: 0;
+  position: relative;
 }
+
+.grid-item h2::before{
+  position: absolute;
+  content: '';
+  width: 80%;
+  top: -.5rem;
+  left: 10%;
+  height: .5px;
+  background-color: var(--main-line-color);
+}
+
+.grid-item h2::after{
+  position: absolute;
+  content: '';
+  width: 80%;
+  bottom: -.5rem;
+  left: 10%;
+  height: .5px;
+  background-color: var(--main-line-color);
+}
+
 
 .grid-item a.header-link{
   display: inline-block;
@@ -54,10 +77,13 @@
 }
 
 
+
 .grid-item ul{
   list-style: none;
   padding: 0;
 }
+
+
 
 .grid-item li{
   font-size: .75em;
@@ -102,6 +128,11 @@
 .grid-item:nth-child(1) h2{
     font-size: 4rem;
     text-align: center;
+}
+
+.grid-item:nth-child(1) h2::before,
+.grid-item:nth-child(1) h2::after{
+  content: none;
 }
 
 .grid-item:nth-child(1) li{
@@ -162,22 +193,5 @@ a.reddit-comment-link:hover{
   transform: scale(1.05);
 }
 
-@media (max-width: 1500px) {
-  .main-grid{
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  }
-}
 
-
-  @media (max-width: 680px) {
-    .main-grid {
-      display: flex;
-      flex-direction: column;
-
-    }
-  
-    .grid-item {
-      margin-bottom: 2em;
-    }
-  }
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import subRedditList from './subredditList';
 import { selectSubreddit } from '../actions';
 
 const SubredditSelector = ({ clickState, setClickState, subreddit, selectSubreddit }) => {
 
-  const subRedditList = ['worldnews', 'news', 'upliftingnews', 'askreddit', 'politics', 'nottheonion', 'ukpolitics', 'technology', 'science', 'futurology',];
-
   const renderSubReddits = () => {
     return (
-      <div>
+      <div className="s-list-container">
         <h4>Select a subreddit</h4>
         <ul className="subreddit-list">{subRedditList.map((item, index) => {
           return (

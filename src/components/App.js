@@ -28,6 +28,20 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
     commentsList();
   }, [posts])
 
+  //lister for escape keydown to remove subreddit component state
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.key === 'Escape') {
+        setClickState(false);
+      }
+    }
+    window.addEventListener('keydown', listener);
+
+    return () => {
+      window.removeEventListener('keydown', listener);
+    }
+  })
+
 
 
   //get comment meta data, returns comment text

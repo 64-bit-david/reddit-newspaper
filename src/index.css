@@ -20,7 +20,6 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin: 0 5rem;
   background-color: var(--background-color);
 }
 
@@ -28,10 +27,14 @@ html{
   font-size: 62.5%;
 }
 
+.main-container{
+  margin: 0 5rem;
+}
 
 @import "./styles/header.css";
 @import "./styles/grid.css";
 @import "./styles/subredditList.css";
+
 
 
 .footer-container{
@@ -60,6 +63,10 @@ html{
   text-decoration: underline;
 
 }
+
+
+
+@import "./styles/responsiveItems.css";
 
 
 
