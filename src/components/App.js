@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts, fetchComments, removeArticles } from '../actions';
-import fetchReddit from '../apis/fetchReddit';
 import Weather from './Weather';
 import CurrentDate from './Date';
 import SubredditSelector from './SubredditSelector';
@@ -10,42 +9,9 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 
 
-
 const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArticles }) => {
 
-  // const [posts, setPosts] = useState([]);
-
-
   const [clickState, setClickState] = useState(false);
-
-  // const [subreddit, setSubreddit] = useState('ukpolitics');
-
-
-
-
-
-
-  // gets top level posts from subreddit endpoint, filters out any stickied posts and returns a certain amount
-  //askscience/top/.json?sort=top
-  // const fetchPosts = async () => {
-  //   const res = await fetchReddit.get(`/r/${subreddit}.json`);
-  //   const postsArray = res.data.data.children;
-  //   const postsWithstickiedRemoved = postsArray.filter(post => !post.data.stickied);
-  //   setPosts(postsWithstickiedRemoved.slice(0, 21));
-  // }
-
-  //fetches comments from post's fetched ids.
-  // filters out stickied, removed and bot comments
-  // const fetchComments = async (postId, post) => {
-  //   const res = await fetchReddit.get(postId);
-  //   const comments = res.data[1].data.children;
-  //   const commentsWithStickedRemoved = comments.filter(comment => {
-  //     return (!comment.data.stickied && comment.data.author_flair_text !== "BOT" && comment.data.body !== "[removed]");
-  //   })
-  //   const article = { articleTitle: post.data.title, articleComments: [commentsWithStickedRemoved.slice(0, 2)], articleMeta: post }
-  //   setArticles((prevState) => ([...prevState, article]))
-  // }
-
 
   useEffect(() => {
     removeArticles();
@@ -144,8 +110,6 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
           <SubredditSelector
             clickState={clickState}
             setClickState={setClickState}
-          // subreddit={subreddit}
-          // setSubreddit={setSubreddit}
           />
         </div>
         <div className='header-center'>
@@ -169,10 +133,12 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
       </div>
 
       <div className='main-grid'>
-
         {renderArticles()}
-
-
+      </div>
+      <div className="footer-container">
+        <footer>
+          <a href="#">Created By David Williamson</a>
+        </footer>
       </div>
 
     </div>

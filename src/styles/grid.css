@@ -6,6 +6,7 @@
     /* grid-gap: 32px; */
     grid-auto-flow: dense;
     margin-top: 1rem;
+    border-bottom: .5px solid var(--main-line-color);
   }
 
 .grid-item{
