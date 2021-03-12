@@ -141,9 +141,6 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
         <div className="date">
           <CurrentDate />
         </div>
-        {/* <div className="price">
-          <p>Price: 3 Shrootbucks</p>
-        </div> */}
       </div>
 
       <div className='main-grid'>

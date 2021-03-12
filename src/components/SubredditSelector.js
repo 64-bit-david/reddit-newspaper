@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import subRedditList from './subredditList';
 import { selectSubreddit } from '../actions';
 
-const SubredditSelector = ({ clickState, setClickState, subreddit, selectSubreddit }) => {
+const SubredditSelector = ({ clickState, setClickState, selectSubreddit }) => {
 
   const renderSubReddits = () => {
     return (
