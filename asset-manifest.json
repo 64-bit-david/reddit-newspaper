@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/reddit-newspaper/static/css/main.7b3ec3b0.chunk.css",
+    "main.js": "/reddit-newspaper/static/js/main.2feb2122.chunk.js",
+    "main.js.map": "/reddit-newspaper/static/js/main.2feb2122.chunk.js.map",
+    "runtime-main.js": "/reddit-newspaper/static/js/runtime-main.7cbf1dda.js",
+    "runtime-main.js.map": "/reddit-newspaper/static/js/runtime-main.7cbf1dda.js.map",
+    "static/js/2.265da9ed.chunk.js": "/reddit-newspaper/static/js/2.265da9ed.chunk.js",
+    "static/js/2.265da9ed.chunk.js.map": "/reddit-newspaper/static/js/2.265da9ed.chunk.js.map",
+    "index.html": "/reddit-newspaper/index.html",
+    "static/css/main.7b3ec3b0.chunk.css.map": "/reddit-newspaper/static/css/main.7b3ec3b0.chunk.css.map",
+    "static/js/2.265da9ed.chunk.js.LICENSE.txt": "/reddit-newspaper/static/js/2.265da9ed.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7cbf1dda.js",
+    "static/js/2.265da9ed.chunk.js",
+    "static/css/main.7b3ec3b0.chunk.css",
+    "static/js/main.2feb2122.chunk.js"
+  ]
+}
