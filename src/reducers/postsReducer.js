@@ -1,6 +1,6 @@
-import { FETCH_COMMENTS, FETCH_POSTS } from '../actions/types';
+import { FETCH_POSTS } from '../actions/types';
 
-export default function (state = [], action) {
+export default function func(state = [], action) {
   switch (action.type) {
     case FETCH_POSTS:
       return action.payload;

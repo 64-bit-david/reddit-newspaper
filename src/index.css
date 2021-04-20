@@ -5,6 +5,11 @@
 font-family: 'Asset', cursive;
 font-family: 'Exo', sans-serif; */
 
+@font-face {
+  font-family: 'chomsky';
+  src: url('./fonts/Chomsky.otf');
+}
+
 
 
 /* header */
@@ -15,6 +20,7 @@ font-family: 'Exo', sans-serif; */
   --main-line-color: rgb(39, 39, 39);
   --background-color: rgb(242, 250,250);
 }
+
 
 body{
   margin: 0;
@@ -35,6 +41,7 @@ html{
 @import "./styles/header.css";
 @import "./styles/grid.css";
 @import "./styles/subredditList.css";
+
 
 .loader-container{
   color: var(--main-font-color);
