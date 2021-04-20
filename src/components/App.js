@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { fetchPosts, fetchComments, removeArticles } from '../actions';
-import Weather from './Weather';
 import CurrentDate from './Date';
 import SubredditSelector from './SubredditSelector';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,11 +12,24 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArticles }) => {
 
   const [clickState, setClickState] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (articles.length > 10) {
+      setLoading(false)
+    }
+    else {
+      setLoading(true)
+    }
+  }, [articles, setLoading])
 
   useEffect(() => {
     removeArticles();
-    fetchPosts(subreddit);
-  }, [subreddit]);
+    const getPosts = async () => {
+      await fetchPosts(subreddit);
+    }
+    getPosts();
+  }, [subreddit, fetchPosts, removeArticles, setLoading]);
 
   //once posts are fetched, using id to fetch each post's comments
   useEffect(() => {
@@ -26,7 +39,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
       })
     }
     commentsList();
-  }, [posts])
+  }, [posts, fetchComments])
 
   //lister for escape keydown to remove subreddit component state
   useEffect(() => {
@@ -90,7 +103,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
                     {alterLongComment(article['articleComments'][0][0].data)}
                   </li> :
                   <li> No Comments Yet!</li>}
-
+                {/* Check if second comment exits */}
                 {article['articleComments'][0][1] ?
                   <li>
                     <span className="author-line">User:
@@ -104,6 +117,16 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
         )
       })
     }
+  }
+
+  const renderLoader = () => {
+    return (
+      <div className="loader-container">
+        <Loader type="Grid" color="rgb(44,44,44)" height={150}
+          timeout={5000}
+        />
+      </div>
+    )
   }
 
 
@@ -135,20 +158,20 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
       </div>
 
       <div className='sub-header'>
-        <div className="weather">
+        {/* <div className="weather">
           <Weather />
-        </div>
+        </div> */}
         <div className="date">
           <CurrentDate />
         </div>
       </div>
 
       <div className='main-grid'>
-        {renderArticles()}
+        {loading ? renderLoader() : renderArticles()}
       </div>
       <div className="footer-container">
         <footer>
-          <a href="#">Created By David Williamson</a>
+          <a href="https://david-w.dev">Created By David Williamson</a>
         </footer>
       </div>
 

@@ -146,7 +146,7 @@
 .grid-item.long-header h2,
 .grid-item:nth-child(16n + 2) h2,
 .grid-item:nth-child(16n + 10) h2 {
-  font-size: .7em;
+  font-size: .85em;
 } 
 
 
@@ -159,7 +159,7 @@
 }
 
 .grid-item:nth-child(1) h2{
-  font-size: 2.9rem;
+  font-size: 3.4rem;
 }
 }
 
