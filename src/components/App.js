@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { fetchPosts, fetchComments, removeArticles } from '../actions';
+import Weather from './Weather';
 import CurrentDate from './Date';
 import SubredditSelector from './SubredditSelector';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -158,9 +159,9 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
       </div>
 
       <div className='sub-header'>
-        {/* <div className="weather">
+        <div className="weather">
           <Weather />
-        </div> */}
+        </div>
         <div className="date">
           <CurrentDate />
         </div>
