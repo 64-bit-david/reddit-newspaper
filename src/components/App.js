@@ -81,7 +81,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
     if (articles.length > 0) {
       return articles.map((article, index) => {
         return (
-          <div
+          <section
             //long-header class will slighly decrease font size
             className={`grid-item
              ${(article.articleTitle.length > 80 && index > 1) ? 'long-header' : ''} `}
@@ -113,7 +113,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
                   </li> : null}
               </ul>
             </div>
-          </div>
+          </section>
 
         )
       })
@@ -136,7 +136,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
 
   return (
     <div className="main-container">
-      <div className="header-container">
+      <header className="header-container">
         <div className="header-left">
           <button
             onClick={() => setClickState(!clickState)}
@@ -156,7 +156,7 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
         <div className="header-right">
           <h4>LATEST <br /> EDITION</h4>
         </div>
-      </div>
+      </header>
 
       <div className='sub-header'>
         <div className="weather">
@@ -167,14 +167,12 @@ const App = ({ subreddit, fetchPosts, posts, fetchComments, articles, removeArti
         </div>
       </div>
 
-      <div className='main-grid'>
+      <main className='main-grid'>
         {loading ? renderLoader() : renderArticles()}
-      </div>
-      <div className="footer-container">
-        <footer>
-          <a href="https://david-w.dev">Created By David Williamson</a>
-        </footer>
-      </div>
+      </main>
+      <footer className="footer-container">
+        <a href="https://david-w.dev">Created By David Williamson</a>
+      </footer>
 
     </div>
   )

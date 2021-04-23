@@ -7,7 +7,7 @@ const SubredditSelector = ({ clickState, setClickState, selectSubreddit }) => {
 
   const renderSubReddits = () => {
     return (
-      <div className="s-list-container">
+      <nav className="s-list-container">
         <h4>Select a subreddit</h4>
         <ul className="subreddit-list">{subRedditList.map((item, index) => {
           return (
@@ -24,7 +24,7 @@ const SubredditSelector = ({ clickState, setClickState, selectSubreddit }) => {
         })
         }
         </ul>
-      </div>
+      </nav>
     )
   }
 
