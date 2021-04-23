@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/reddit-newspaper/static/css/main.ab46d232.chunk.css",
-    "main.js": "/reddit-newspaper/static/js/main.d6c10508.chunk.js",
-    "main.js.map": "/reddit-newspaper/static/js/main.d6c10508.chunk.js.map",
+    "main.js": "/reddit-newspaper/static/js/main.a46139f5.chunk.js",
+    "main.js.map": "/reddit-newspaper/static/js/main.a46139f5.chunk.js.map",
     "runtime-main.js": "/reddit-newspaper/static/js/runtime-main.7cbf1dda.js",
     "runtime-main.js.map": "/reddit-newspaper/static/js/runtime-main.7cbf1dda.js.map",
     "static/js/2.d235102a.chunk.js": "/reddit-newspaper/static/js/2.d235102a.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.7cbf1dda.js",
     "static/js/2.d235102a.chunk.js",
     "static/css/main.ab46d232.chunk.css",
-    "static/js/main.d6c10508.chunk.js"
+    "static/js/main.a46139f5.chunk.js"
   ]
 }
