@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/reddit-newspaper/static/css/main.ab46d232.chunk.css",
+    "main.css": "/reddit-newspaper/static/css/main.d59e6375.chunk.css",
     "main.js": "/reddit-newspaper/static/js/main.a46139f5.chunk.js",
     "main.js.map": "/reddit-newspaper/static/js/main.a46139f5.chunk.js.map",
     "runtime-main.js": "/reddit-newspaper/static/js/runtime-main.7cbf1dda.js",
@@ -8,14 +8,14 @@
     "static/js/2.d235102a.chunk.js": "/reddit-newspaper/static/js/2.d235102a.chunk.js",
     "static/js/2.d235102a.chunk.js.map": "/reddit-newspaper/static/js/2.d235102a.chunk.js.map",
     "index.html": "/reddit-newspaper/index.html",
-    "static/css/main.ab46d232.chunk.css.map": "/reddit-newspaper/static/css/main.ab46d232.chunk.css.map",
+    "static/css/main.d59e6375.chunk.css.map": "/reddit-newspaper/static/css/main.d59e6375.chunk.css.map",
     "static/js/2.d235102a.chunk.js.LICENSE.txt": "/reddit-newspaper/static/js/2.d235102a.chunk.js.LICENSE.txt",
     "static/media/index.css": "/reddit-newspaper/static/media/Chomsky.c47de9e3.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.7cbf1dda.js",
     "static/js/2.d235102a.chunk.js",
-    "static/css/main.ab46d232.chunk.css",
+    "static/css/main.d59e6375.chunk.css",
     "static/js/main.a46139f5.chunk.js"
   ]
 }
