@@ -169,7 +169,7 @@
 
 .author-line{
   display: inline-block;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .author-name{
